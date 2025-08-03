@@ -9,10 +9,6 @@
     "dist"
   ],
   "sideEffects": false,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ZappiconLabs/zappicon-react.git"
-  },
   "keywords": [
     "icons",
     "react",
@@ -22,6 +18,10 @@
   ],
   "author": "Haroun Abidi",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZappiconLabs/zappicon-react.git"
+  },
   "bugs": {
     "url": "https://github.com/ZappiconLabs/zappicon-react/issues"
   },
@@ -40,6 +40,8 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@eslint/js": "^9.32.0",
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
