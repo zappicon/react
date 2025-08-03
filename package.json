@@ -25,19 +25,27 @@
     "svgr": "svgr --out-dir src/icons icons/*.svg && npm run generate",
     "clean": "rm -rf dist && rm -rf src/icons",
     "build": "npm run clean && npm run svgr && rollup -c",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
+    "@eslint/js": "^9.32.0",
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-typescript": "^12.1.4",
     "@svgr/cli": "^8.1.0",
     "@types/react": "^19.1.9",
+    "eslint": "^9.32.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.3.0",
+    "jiti": "^2.5.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "rollup": "^4.46.2",
     "rollup-plugin-dts": "^6.2.1",
     "rollup-plugin-filesize": "^10.0.0",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.38.1-alpha.4"
   }
 }
