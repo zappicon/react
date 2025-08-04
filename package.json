@@ -28,16 +28,17 @@
   "homepage": "https://zappicon.com",
   "scripts": {
     "generate": "node scripts/generate.mjs",
-    "svgr": "svgr --out-dir src/icons icons/*.svg && npm run generate",
+    "svgr": "svgr --out-dir src/icons icons/*.svg && pnpm run generate",
     "clean": "rm -rf dist && rm -rf src/icons",
-    "build": "npm run clean && npm run svgr && rollup -c",
+    "build": "pnpm run clean && pnpm run svgr && rollup -c",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "prepublishOnly": "npm run build && npm test",
+    "prepublishOnly": "pnpm run build && pnpm test",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "preinstall": "npx only-allow pnpm"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
