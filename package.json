@@ -27,21 +27,21 @@
   },
   "homepage": "https://zappicon.com",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky",
+    "clean": "rm -rf dist && rm -rf src/icons",
     "generate": "node scripts/generate.mjs",
     "svgr": "svgr --out-dir src/icons icons/*.svg && pnpm run generate",
-    "clean": "rm -rf dist && rm -rf src/icons",
     "build": "pnpm run clean && pnpm run svgr && rollup -c",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "prepublishOnly": "pnpm run build && pnpm test",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky",
-    "preinstall": "npx only-allow pnpm",
     "changeset": "changeset",
     "version": "changeset version",
-    "release": "pnpm run build && changeset publish"
+    "release": "pnpm run build && changeset publish",
+    "prepublishOnly": "pnpm run build && pnpm test"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",
