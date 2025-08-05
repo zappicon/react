@@ -1,3 +1,5 @@
 packages:
-  # include packages in subfolders (change as required)
-  - "src/**"
+  - src/**
+
+ignoredBuiltDependencies:
+  - unrs-resolver

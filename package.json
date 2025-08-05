@@ -1,10 +1,21 @@
 {
   "name": "@zappicon/react",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "A comprehensive React icon library with multiple variants (filled, outline, duotone, light, regular)",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./icons/*": {
+      "import": "./dist/esm/icons/*.js",
+      "require": "./dist/cjs/icons/*.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -59,6 +70,7 @@
     "@types/react": "^19.1.9",
     "eslint": "^9.32.0",
     "eslint-plugin-react": "^7.37.5",
+    "glob": "^11.0.3",
     "globals": "^16.3.0",
     "husky": "^9.1.7",
     "jest": "^30.0.5",
