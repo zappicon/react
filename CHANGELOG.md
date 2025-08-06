@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.6] - 2025-08-06
+
+### Publishing Fixes
+
+- Add `--no-git-checks` flag to `pnpm publish` command
+- Resolve "unclean working tree" error in GitHub Actions workflow
+- Allow publishing despite build artifacts in working directory
+
 ## [0.1.5] - 2025-08-06
 
 ### Workflow Optimization

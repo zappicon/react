@@ -1,6 +1,6 @@
 {
   "name": "@zappicon/react",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A comprehensive React icon library with multiple variants (filled, outline, duotone, light, regular)",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
