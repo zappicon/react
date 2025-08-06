@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.5] - 2025-08-06
+
+### Workflow Optimization
+
+- Fixed GitHub Actions workflow step order: build before test
+- Ensure tests run against built components for accurate validation
+- Optimized workflow execution sequence
+
 ## [0.1.4] - 2025-08-06
 
 ### CI/CD Fixes
