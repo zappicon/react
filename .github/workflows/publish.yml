@@ -47,7 +47,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.version_check.outputs.changed == 'true'
-        run: pnpm ci
+        run: pnpm install
 
       - name: Run tests
         if: steps.version_check.outputs.changed == 'true'

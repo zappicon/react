@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.4] - 2025-08-06
+
+### CI/CD Fixes
+
+- Fixed GitHub Actions workflow to use `pnpm install` instead of `pnpm ci`
+- Resolved publish workflow dependency installation issues
+- Improved automated npm publishing reliability
+
 ## [0.1.3] - 2025-08-06
 
 ### Documentation & Project Management
