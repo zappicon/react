@@ -1,0 +1,62 @@
+name: Publish to npm
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # fetch at least one commit before
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Get current version
+        id: current
+        run: echo "version=$(jq -r .version package.json)" >> $GITHUB_OUTPUT
+
+      - name: Get previous version
+        id: previous
+        run: |
+          git show HEAD^:package.json > previous_package.json
+          echo "version=$(jq -r .version previous_package.json)" >> $GITHUB_OUTPUT
+
+      - name: Check if version changed
+        id: version_check
+        run: |
+          if [ "${{ steps.current.outputs.version }}" != "${{ steps.previous.outputs.version }}" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install dependencies
+        if: steps.version_check.outputs.changed == 'true'
+        run: pnpm ci
+
+      - name: Run tests
+        if: steps.version_check.outputs.changed == 'true'
+        run: pnpm test
+
+      - name: Run linting
+        if: steps.version_check.outputs.changed == 'true'
+        run: pnpm lint
+
+      - name: Build package
+        if: steps.version_check.outputs.changed == 'true'
+        run: pnpm run build # or skip if not needed
+
+      - name: Publish to npm
+        if: steps.version_check.outputs.changed == 'true'
+        run: pnpm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

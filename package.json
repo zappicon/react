@@ -1,6 +1,6 @@
 {
   "name": "@zappicon/react",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A comprehensive React icon library with multiple variants (filled, outline, duotone, light, regular)",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -48,14 +48,9 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "changeset": "changeset",
-    "version": "changeset version",
-    "release": "pnpm run build && changeset publish",
-    "prepublishOnly": "pnpm run build && pnpm test"
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.5",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@eslint/js": "^9.32.0",
