@@ -66,3 +66,81 @@ jobs:
         run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Get commit message
+        if: steps.version_check.outputs.changed == 'true'
+        id: commit_message
+        run: echo "message=$(git log -1 --pretty=%B)" >> $GITHUB_OUTPUT
+
+      - name: Create and push tag
+        if: steps.version_check.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git tag -a "v${{ steps.current.outputs.version }}" -m "Release v${{ steps.current.outputs.version }}"
+          git push origin "v${{ steps.current.outputs.version }}"
+
+      - name: Create GitHub Release
+        if: steps.version_check.outputs.changed == 'true'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.current.outputs.version }}
+          release_name: v${{ steps.current.outputs.version }}
+          body: |
+            ## <small>v${{ steps.current.outputs.version }} ($(date '+%Y-%m-%d'))</small>
+
+            ${{ steps.commit_message.outputs.message }}
+
+            ### Package Information
+            - **Package**: @zappicon/react
+            - **Version**: ${{ steps.current.outputs.version }}
+            - **Published**: ${{ github.event.head_commit.timestamp }}
+
+            ### Installation
+            ```bash
+            npm install @zappicon/react@${{ steps.current.outputs.version }}
+            ```
+          draft: false
+          prerelease: false
+
+      - name: Update CHANGELOG.md
+        if: steps.version_check.outputs.changed == 'true'
+        run: |
+          # Get current date
+          current_date=$(date '+%Y-%m-%d')
+
+          # Create backup of changelog
+          cp CHANGELOG.md CHANGELOG.md.bak
+
+          # Create new changelog entry
+          {
+            echo "# Changelog"
+            echo ""
+            echo "All notable changes to this project will be documented in this file."
+            echo ""
+            echo "The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),"
+            echo "and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)."
+            echo ""
+            echo "## [v${{ steps.current.outputs.version }}] - $current_date"
+            echo ""
+            echo "### Changes"
+            echo ""
+            echo "${{ steps.commit_message.outputs.message }}"
+            echo ""
+            # Skip the header lines and add the rest of the existing changelog
+            tail -n +7 CHANGELOG.md.bak
+          } > CHANGELOG.md
+
+          # Clean up backup
+          rm CHANGELOG.md.bak
+
+      - name: Commit and push changelog update
+        if: steps.version_check.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add CHANGELOG.md
+          git commit -m "docs: update CHANGELOG.md for v${{ steps.current.outputs.version }}"
+          git push origin main

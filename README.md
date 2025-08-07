@@ -298,6 +298,19 @@ zappicon-react/
 └── tests/             # Test files
 ```
 
+## 🚀 Automated Publishing
+
+This package uses GitHub Actions for automated publishing to npm. When a version is bumped in `package.json`, the workflow automatically:
+
+- Runs build, test, and lint checks
+- Publishes to npm registry
+- Creates git tags for the new version
+- Creates GitHub releases with commit messages and package information
+- Updates CHANGELOG.md with the new version and changes
+- Commits and pushes the changelog update
+
+For detailed setup instructions, see our [GitHub Actions Setup Guide](.github/README.md).
+
 ## 🤝 Contributing
 
 We welcome contributions! Here's how you can help:
