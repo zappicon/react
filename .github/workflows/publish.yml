@@ -1,5 +1,9 @@
 name: Publish to npm
 
+permissions:
+  contents: write
+  pull-requests: write
+
 on:
   push:
     branches:
@@ -38,6 +42,9 @@ jobs:
           else
             echo "changed=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Remove node_modules and package-lock.json
+        run: rm -rf node_modules package-lock.json
 
       - name: Install pnpm
         if: steps.version_check.outputs.changed == 'true'
@@ -85,14 +92,12 @@ jobs:
 
       - name: Create GitHub Release
         if: steps.version_check.outputs.changed == 'true'
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ steps.current.outputs.version }}
-          release_name: v${{ steps.current.outputs.version }}
+          name: v${{ steps.current.outputs.version }}
           body: |
-            ## <small>v${{ steps.current.outputs.version }} ($(date '+%Y-%m-%d'))</small>
+            ## <small>v${{ steps.current.outputs.version }}</small>
 
             ${{ steps.commit_message.outputs.message }}
 
@@ -107,6 +112,8 @@ jobs:
             ```
           draft: false
           prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update CHANGELOG.md
         if: steps.version_check.outputs.changed == 'true'
