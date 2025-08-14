@@ -1,6 +1,6 @@
 import React from "react"
 import type { SVGProps } from "react"
-import AddressCardDuotone from "../src/icons/AddressCardDuotone"
+import { AddressCard } from "../src/index"
 
 describe("TypeScript Types", () => {
   it("icon components accept SVGProps", () => {
@@ -15,33 +15,33 @@ describe("TypeScript Types", () => {
     }
 
     // Type checking - this should compile without errors
-    const element = <AddressCardDuotone {...props} />
+    const element = <AddressCard {...props} />
     expect(element).toBeDefined()
   })
 
   it("icon components work with React.ComponentProps", () => {
     // Test using React.ComponentProps type
-    const props: React.ComponentProps<typeof AddressCardDuotone> = {
+    const props: React.ComponentProps<typeof AddressCard> = {
       width: "100%",
       height: "auto",
       style: { color: "red" },
     }
 
-    const element = <AddressCardDuotone {...props} />
+    const element = <AddressCard {...props} />
     expect(element).toBeDefined()
   })
 
   describe("Ref Types", () => {
     it("icon components accept ref with correct type", () => {
       const ref = React.createRef<SVGSVGElement>()
-      const element = <AddressCardDuotone ref={ref} />
+      const element = <AddressCard ref={ref} />
       expect(element).toBeDefined()
     })
 
     it("icon components work with useRef", () => {
       const TestComponent = () => {
         const ref = React.useRef<SVGSVGElement>(null)
-        return <AddressCardDuotone ref={ref} />
+        return <AddressCard ref={ref} />
       }
 
       const element = <TestComponent />
@@ -56,14 +56,14 @@ describe("TypeScript Types", () => {
         }
       }
 
-      const element = <AddressCardDuotone ref={callbackRef} />
+      const element = <AddressCard ref={callbackRef} />
       expect(element).toBeDefined()
     })
 
     it("ref type is compatible with SVGSVGElement", () => {
       // This test ensures the ref type is correctly inferred
       const ref = React.createRef<SVGSVGElement>()
-      const element = <AddressCardDuotone ref={ref} />
+      const element = <AddressCard ref={ref} />
 
       // TypeScript should understand that ref.current is SVGSVGElement | null
       const current: SVGSVGElement | null = ref.current
@@ -75,10 +75,10 @@ describe("TypeScript Types", () => {
       // Test that the component is properly typed as a forwardRef component
       const WrappedComponent = React.forwardRef<
         SVGSVGElement,
-        React.ComponentProps<typeof AddressCardDuotone>
-      >((props, ref) => <AddressCardDuotone {...props} ref={ref} />)
+        React.ComponentProps<typeof AddressCard>
+      >((props, ref) => <AddressCard {...props} ref={ref} />)
 
-      WrappedComponent.displayName = "WrappedAddressCardDuotone"
+      WrappedComponent.displayName = "WrappedAddressCard"
 
       const ref = React.createRef<SVGSVGElement>()
       const element = <WrappedComponent ref={ref} width={32} />

@@ -1,5 +1,6 @@
 import resolve from "@rollup/plugin-node-resolve"
 import typescript from "@rollup/plugin-typescript"
+import terser from "@rollup/plugin-terser"
 import commonjs from "@rollup/plugin-commonjs"
 import dts from "rollup-plugin-dts"
 import filesize from "rollup-plugin-filesize"
@@ -19,20 +20,22 @@ export default [
     input: "src/index.ts",
     output: [
       {
-        file: "dist/cjs/index.js",
+        file: "dist/index.cjs.js",
         format: "cjs",
-        sourcemap: true,
+        sourcemap: false,
+        plugins: [terser()],
       },
-      {
-        file: "dist/esm/index.js",
-        format: "esm",
-        sourcemap: true,
-      },
+      // {
+      //   file: "dist/index.esm.js",
+      //   format: "esm",
+      //   sourcemap: false,
+      //   // plugins: [terser()],
+      // },
     ],
     plugins: [
       resolve({
         extensions: [".js", ".jsx", ".ts", ".tsx"],
-        skip: ["react"],
+        skip: ["react", "react-dom"],
       }),
       commonjs(),
       typescript({
@@ -43,34 +46,29 @@ export default [
       }),
       filesize(),
     ],
-    external: ["react", "react/jsx-runtime"],
+    external: ["react", "react-dom"],
   },
   // Individual icon files for optimal tree-shaking
   {
     input: {
       index: "src/index.ts",
       ...iconFiles,
+      // ...variantFiles,
     },
     output: [
       {
-        dir: "dist/cjs",
-        format: "cjs",
-        sourcemap: true,
-        preserveModules: true,
-        preserveModulesRoot: "src",
-      },
-      {
-        dir: "dist/esm",
+        dir: "dist",
         format: "esm",
-        sourcemap: true,
+        sourcemap: false,
         preserveModules: true,
         preserveModulesRoot: "src",
+        plugins: [terser()],
       },
     ],
     plugins: [
       resolve({
         extensions: [".js", ".jsx", ".ts", ".tsx"],
-        skip: ["react"],
+        skip: ["react", "react-dom"],
       }),
       commonjs(),
       typescript({
@@ -80,13 +78,28 @@ export default [
         declarationMap: false,
       }),
     ],
-    external: ["react", "react/jsx-runtime"],
+    external: ["react", "react-dom"],
   },
-  // Type definitions
+  // Main type definitions (index.d.ts)
   {
     input: "src/index.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts()],
-    external: ["react", "react/jsx-runtime"],
+    external: ["react", "react-dom"],
+  },
+  // Individual icon type definitions
+  {
+    input: {
+      index: "src/index.ts",
+      ...iconFiles,
+    },
+    output: {
+      dir: "dist",
+      format: "esm",
+      preserveModules: true,
+      preserveModulesRoot: "src",
+    },
+    plugins: [dts()],
+    external: ["react", "react-dom"],
   },
 ]

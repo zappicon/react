@@ -5,7 +5,7 @@ import pluginReact from "eslint-plugin-react"
 
 export default [
   {
-    ignores: ["dist/**", "coverage/**", "node_modules/**"],
+    ignores: ["dist/**", "coverage/**", "node_modules/**", "core/**"],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -19,6 +19,9 @@ export default [
       },
       ecmaVersion: "latest",
       sourceType: "module",
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+      },
     },
     settings: {
       react: {
