@@ -1,6 +1,6 @@
 {
   "name": "@zappicon/react",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "A comprehensive React icon library with multiple variants (filled, outline, duotone, light, regular)",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -35,10 +35,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zappicon/zappicon-react.git"
+    "url": "git+https://github.com/zappicon/react.git"
   },
   "bugs": {
-    "url": "https://github.com/zappicon/zappicon-react/issues"
+    "url": "https://github.com/zappicon/react/issues"
   },
   "homepage": "https://zappicon.com",
   "scripts": {
