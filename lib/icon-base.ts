@@ -15,8 +15,8 @@ const IconBase = React.forwardRef<SVGSVGElement, IconBaseProps>(
       {
         ref,
         xmlns: "http://www.w3.org/2000/svg",
-        width: size ?? "1em",
-        height: size ?? "1em",
+        width: size ?? "24",
+        height: size ?? "24",
         fill: color ?? "currentColor",
         viewBox: "0 0 24 24",
         ...rest,

@@ -28,8 +28,8 @@ describe("Icon Components", () => {
 
       expect(icon).toHaveAttribute("xmlns", "http://www.w3.org/2000/svg")
       expect(icon).toHaveAttribute("viewBox", "0 0 24 24")
-      expect(icon).toHaveAttribute("width", "1em")
-      expect(icon).toHaveAttribute("height", "1em")
+      expect(icon).toHaveAttribute("width", "24")
+      expect(icon).toHaveAttribute("height", "24")
     })
   })
 
