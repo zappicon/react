@@ -1,9 +1,9 @@
 import * as React from "react"
 import { ReactElement } from "react"
-import { Variant, ZappiconProps } from "./types"
+import { ZappiconProps, IconVariant } from "./types"
 
 interface IconBaseProps extends ZappiconProps {
-  variants: Map<Variant, ReactElement>
+  variants: Map<IconVariant, ReactElement>
 }
 
 const IconBase = React.forwardRef<SVGSVGElement, IconBaseProps>(

@@ -1,18 +1,10 @@
 import { ComponentPropsWithoutRef, RefAttributes } from "react"
+import type { ZappiconCustomProps, Variant } from "../core/src/types"
 
-export type Variant =
-  | "light"
-  | "regular"
-  | "filled"
-  | "duotone"
-  | "duotone-line"
-
+export type IconVariant = Variant
 export interface ZappiconProps
   extends ComponentPropsWithoutRef<"svg">,
-    RefAttributes<SVGSVGElement> {
-  color?: string
-  size?: number | string
-  variant?: Variant
-}
+    RefAttributes<SVGSVGElement>,
+    ZappiconCustomProps {}
 
 export type Icon = React.ForwardRefExoticComponent<ZappiconProps>
