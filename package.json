@@ -1,6 +1,6 @@
 {
   "name": "@zappicon/react",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Free & premium UI icons library, crafted to simplify workflows for designers, developers and creators.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
