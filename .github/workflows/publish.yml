@@ -56,6 +56,14 @@ jobs:
         with:
           version: latest
 
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
       - name: Install dependencies
         if: steps.version_check.outputs.changed == 'true'
         run: pnpm install
@@ -156,5 +164,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add CHANGELOG.md
-          git commit -m "docs: update CHANGELOG.md for v${{ steps.current.outputs.version }}"
+          git commit -m "docs: update CHANGELOG.md for v${{ steps.current.outputs.version }}" --no-verify
           git push origin main

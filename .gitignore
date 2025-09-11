@@ -117,5 +117,6 @@ common/autoinstallers/*/.npmrc
 
 # Generated files (auto-generated from SVGs, should not be committed)
 src/icons/*.tsx
+src/variants/*.ts
 src/index.ts
 

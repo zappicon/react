@@ -29,12 +29,11 @@ export default [
       },
     },
     rules: {
-      // Disable some rules that might be too strict for a library
       "@typescript-eslint/no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_" },
       ],
-      "react/react-in-jsx-scope": "off", // Not needed in React 17+
+      "react/react-in-jsx-scope": "off",
     },
   },
 ]

@@ -1,8 +1,8 @@
 import icons from "../core/src/index.ts"
-import { writeFile, mkdir } from "fs/promises"
-import path from "node:path"
-import { join } from "path"
 import process from "process"
+import path from "node:path"
+import { writeFile, mkdir } from "fs/promises"
+import { join } from "path"
 import { execSync } from "child_process"
 import { fileURLToPath } from "node:url"
 import { readFileSync } from "node:fs"
@@ -35,8 +35,8 @@ async function generateIcons() {
     for (const icon of icons) {
       const iconFileContent = `import * as React from "react"
 import variants from "../variants/${icon.name}"
-import type { Icon } from "../../lib/types"
-import IconBase from "../../lib/icon-base"
+import type { Icon } from "../lib/types"
+import IconBase from "../lib/icon-base"
 
 /**
  * ${VARIANTS.map((variant) => {
@@ -54,7 +54,7 @@ const ${toPascalCase(icon.name)}: Icon = React.forwardRef((props, ref) => (
 
 ${toPascalCase(icon.name)}.displayName = '${toPascalCase(icon.name)}'
 
-export { ${toPascalCase(icon.name)} }
+export default ${toPascalCase(icon.name)}
 `
 
       await writeFile(
@@ -62,26 +62,32 @@ export { ${toPascalCase(icon.name)} }
         iconFileContent
       )
     }
-    const iconFiles = icons.map((icon) => {
-      return `${icon.name}`
-    })
-    const indexPath = join(__dirname, "../src/index.ts")
-    const exportTypes = `export type { Icon, ZappiconProps, IconVariant } from "../lib/types"\n`
-    // const exportIconBase = `export { IconBase } from "@/lib/icon-base"\n`
 
-    const exportStatements = iconFiles
-      .map((base) => {
-        return `export * from './icons/${base}';`
-      })
-      .join("\n")
-
-    await writeFile(indexPath, exportTypes + exportStatements)
-
-    console.log(
-      `✅ Imported and wrote ${icons.length} icons from core/src/index.ts!`
-    )
+    console.log(`✅ Generated icon files for ${icons.length} icons!`)
   } catch (error) {
     console.error("Error generating icon files:", error)
+    process.exit(1)
+  }
+}
+
+async function generateIndex() {
+  try {
+    const indexPath = join(__dirname, "../src/index.ts")
+
+    const indexFileContent = icons
+      .map(
+        (icon) =>
+          `export { default as ${toPascalCase(icon.name)} } from './icons/${
+            icon.name
+          }';`
+      )
+      .join("\n")
+
+    await writeFile(indexPath, indexFileContent)
+
+    console.log(`✅ Generated index file!`)
+  } catch (error) {
+    console.error("Error generating index file:", error)
     process.exit(1)
   }
 }
@@ -100,7 +106,7 @@ async function generateVariants() {
       })
 
       const variantsMapContent = `import * as React from "react"
-import type { IconVariant } from "../../lib/types"
+import type { IconVariant } from "../lib/types"
 
 export default new Map<IconVariant, React.ReactElement>([
 ${variantEntries.join(",\n")}
@@ -121,7 +127,7 @@ ${variantEntries.join(",\n")}
   }
 }
 
-export function renderSvgToCreateElement(node, indent = "", key) {
+function renderSvgToCreateElement(node, indent = "", key) {
   if (!node) return "null"
   const { name, type, value, attributes = {}, children = [] } = node
   if (type === "text") {
@@ -184,7 +190,7 @@ export function renderSvgToCreateElement(node, indent = "", key) {
   return `React.createElement("${name}", ${propsString}, ${childrenString})`
 }
 
-function convertAttributeToReactProp(attr) {
+function convertAttributeToReactProp(attr: string): string {
   const specialCases = {
     class: "className",
     for: "htmlFor",
@@ -205,14 +211,14 @@ function convertAttributeToReactProp(attr) {
   return toCamelCase(attr)
 }
 
-function toPascalCase(str) {
+function toPascalCase(str: string): string {
   return str
     .split(/[-_\s]+/)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join("")
 }
 
-function toCamelCase(str) {
+function toCamelCase(str: string): string {
   return str
     .split("-")
     .map((word, index) => {
@@ -224,7 +230,7 @@ function toCamelCase(str) {
     .join("")
 }
 
-function getBase64Svg(svg) {
+function getBase64Svg(svg: string): string {
   svg = svg.replace(/<svg([^>]*)>/, (_, attrs) => {
     const newAttrs = attrs
       .replace(/\swidth="[^"]*"/g, "")
@@ -238,4 +244,5 @@ function getBase64Svg(svg) {
 
 updateGitSubmodules()
 generateIcons()
+generateIndex()
 generateVariants()

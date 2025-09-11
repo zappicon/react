@@ -1,5 +1,5 @@
 import * as React from "react"
-import type { IconVariant } from "../../lib/types"
+import type { IconVariant } from "../lib/types"
 
 export default new Map<IconVariant, React.ReactElement>([
 ["light", React.createElement(React.Fragment, null, React.createElement("path", {key: 0, d: "M5 4.5a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 1 0V6.207l13.146 13.147a.5.5 0 0 0 .708-.708L6.207 5.5H13a.5.5 0 0 0 0-1z"}))],

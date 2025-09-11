@@ -1,8 +1,9 @@
 {
   "name": "@zappicon/react",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Free & premium UI icons library, crafted to simplify workflows for designers, developers and creators.",
   "main": "dist/cjs/index.js",
+  "browser": "dist/esm/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -27,11 +28,7 @@
     "components",
     "zappicon"
   ],
-  "author": {
-    "name": "Haroun Abidi",
-    "email": "contact@harounabidi.com",
-    "url": "https://harounabidi.com"
-  },
+  "author": "Haroun Abidi (Developed under Zappicon) <contact@harounabidi.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -44,7 +41,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
-    "clean": "rm -rf dist && rm -rf src/icons && rm -rf src/variants",
+    "clean": "rimraf dist && rimraf src/icons && rimraf src/variants",
     "generate": "npm run clean && tsx scripts/generate.ts",
     "build": "npm run generate && rollup -c",
     "test": "jest",
@@ -66,6 +63,7 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^24.3.0",
     "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.9",
     "eslint": "^9.33.0",
     "eslint-plugin-react": "^7.37.5",
     "glob": "^11.0.3",
@@ -76,9 +74,9 @@
     "jiti": "^2.5.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "rimraf": "^6.0.1",
     "rollup": "^4.46.2",
     "rollup-plugin-dts": "^6.2.1",
-    "rollup-plugin-filesize": "^10.0.0",
     "ts-jest": "^29.4.1",
     "tslib": "^2.8.1",
     "tsx": "^4.20.4",
