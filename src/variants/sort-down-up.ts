@@ -6,7 +6,7 @@ export default new Map<IconVariant, React.ReactElement>([
 ["regular", React.createElement(React.Fragment, null, React.createElement("path", {key: 0, fillRule: "evenodd", d: "M13.559 10.121a2.25 2.25 0 0 1-3.119 0L4.882 4.778c-1.33-1.28-.425-3.528 1.42-3.528h11.395c1.845 0 2.75 2.249 1.42 3.528zm-2.08-1.081c.291.28.75.28 1.04 0l5.559-5.343a.55.55 0 0 0-.381-.947H6.303a.55.55 0 0 0-.382.946zM13.559 13.879a2.25 2.25 0 0 0-3.119 0l-5.558 5.343c-1.33 1.28-.425 3.528 1.42 3.528h11.395c1.845 0 2.75-2.249 1.42-3.528zm-2.08 1.081a.75.75 0 0 1 1.04 0l5.559 5.343a.55.55 0 0 1-.381.947H6.303a.55.55 0 0 1-.382-.947z", clipRule: "evenodd"}))],
 ["filled", React.createElement(React.Fragment, null, React.createElement("path", {key: 0, d: "M13.386 9.941a2 2 0 0 1-2.772 0L5.055 4.598C3.887 3.474 4.682 1.5 6.303 1.5h11.394c1.62 0 2.415 1.974 1.247 3.098zM13.386 14.059a2 2 0 0 0-2.772 0l-5.559 5.343C3.887 20.526 4.682 22.5 6.303 22.5h11.394c1.62 0 2.415-1.974 1.247-3.098z"}))],
 ["duotone", React.createElement(React.Fragment, null, [
-    React.createElement("path", {key: 0, d: "M13.386 14.059a2 2 0 0 0-2.772 0l-5.559 5.343C3.887 20.525 4.682 22.5 6.303 22.5h11.394c1.62 0 2.415-1.975 1.247-3.098z", opacity: ".4"}),
+    React.createElement("path", {key: 0, d: "M13.386 14.059a2 2 0 0 0-2.772 0l-5.559 5.343C3.887 20.526 4.682 22.5 6.303 22.5h11.394c1.62 0 2.415-1.974 1.247-3.098z", opacity: ".4"}),
     React.createElement("path", {key: 1, d: "M13.386 9.941a2 2 0 0 1-2.772 0L5.055 4.598C3.887 3.474 4.682 1.5 6.303 1.5h11.394c1.62 0 2.415 1.974 1.247 3.098z"})
   ])],
 ["duotone-line", React.createElement(React.Fragment, null, [

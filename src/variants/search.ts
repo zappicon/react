@@ -7,7 +7,7 @@ export default new Map<IconVariant, React.ReactElement>([
 ["filled", React.createElement(React.Fragment, null, React.createElement("path", {key: 0, fillRule: "evenodd", d: "M16.473 17.888A9.46 9.46 0 0 1 10.5 20a9.5 9.5 0 1 1 9.5-9.5 9.46 9.46 0 0 1-2.113 5.973l4.82 4.82a1 1 0 0 1-1.414 1.414zM3 10.5a7.5 7.5 0 1 1 12.916 5.188 1 1 0 0 0-.228.228A7.5 7.5 0 0 1 3 10.5", clipRule: "evenodd"}))],
 ["duotone", React.createElement(React.Fragment, null, [
     React.createElement("path", {key: 0, d: "M10.5 1a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19", opacity: ".4"}),
-    React.createElement("path", {key: 1, d: "M16.473 17.888q.782-.633 1.415-1.415l4.82 4.82a1 1 0 0 1-1.415 1.414z"})
+    React.createElement("path", {key: 1, d: "M16.473 17.887q.782-.632 1.414-1.414l4.82 4.82a1 1 0 1 1-1.414 1.414z"})
   ])],
 ["duotone-line", React.createElement(React.Fragment, null, [
     React.createElement("path", {key: 0, d: "M19 10.5a8.5 8.5 0 1 1-17 0 8.5 8.5 0 0 1 17 0", opacity: ".4"}),

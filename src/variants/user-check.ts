@@ -4,7 +4,7 @@ import type { IconVariant } from "../lib/types"
 export default new Map<IconVariant, React.ReactElement>([
 ["light", React.createElement(React.Fragment, null, [
     React.createElement("path", {key: 0, fillRule: "evenodd", d: "M4 7.5a5 5 0 1 1 10 0 5 5 0 0 1-10 0m5-4a4 4 0 1 0 0 8 4 4 0 0 0 0-8", clipRule: "evenodd"}),
-    React.createElement("path", {key: 1, d: "M9 15.5c-3.823 0-7.05 2.382-7.505 5.57a.5.5 0 0 1-.99-.14c.545-3.812 4.318-6.43 8.496-6.43 4.177 0 7.95 2.618 8.494 6.43a.5.5 0 1 1-.99.14c-.455-3.188-3.681-5.57-7.504-5.57M23.354 9.354a.5.5 0 1 0-.707-.708L18.5 12.793l-2.146-2.147a.5.5 0 0 0-.707.708l2.5 2.5a.5.5 0 0 0 .707 0z"})
+    React.createElement("path", {key: 1, d: "M9 15.5c-3.823 0-7.05 2.382-7.505 5.57a.5.5 0 0 1-.99-.14C1.05 17.117 4.823 14.5 9 14.5c4.178 0 7.95 2.618 8.495 6.43a.5.5 0 0 1-.99.14C16.049 17.883 12.824 15.5 9 15.5M23.354 9.354a.5.5 0 0 0-.708-.708L18.5 12.793l-2.146-2.147a.5.5 0 0 0-.708.708l2.5 2.5a.5.5 0 0 0 .708 0z"})
   ])],
 ["regular", React.createElement(React.Fragment, null, [
     React.createElement("path", {key: 0, fillRule: "evenodd", d: "M3.75 7.5a5.25 5.25 0 1 1 10.5 0 5.25 5.25 0 0 1-10.5 0M9 3.75a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5", clipRule: "evenodd"}),
