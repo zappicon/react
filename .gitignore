@@ -100,9 +100,6 @@ temp/
 # Rollup cache
 .rollup.cache/
 
-# Jest cache
-.jest/
-
 # Storybook build outputs
 storybook-static
 
@@ -119,4 +116,3 @@ common/autoinstallers/*/.npmrc
 src/icons/*.tsx
 src/variants/*.ts
 src/index.ts
-

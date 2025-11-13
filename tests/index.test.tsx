@@ -1,11 +1,12 @@
 import React from "react"
 import type { ReactElement, SVGProps } from "react"
 import { render, screen, fireEvent } from "@testing-library/react"
+import { describe, it, vi, expect } from "vitest"
 import AddressCard from "../src/icons/address-card"
 import { IconVariant } from "../src/lib/types"
 import * as Icons from "../src"
 import IconBase from "../src/lib/icon-base"
-import "@testing-library/jest-dom"
+import "@testing-library/jest-dom/vitest"
 
 describe("Index File", () => {
   it("all exports are valid Vue components", () => {
@@ -24,7 +25,7 @@ describe("Index File", () => {
     iconNames.forEach((iconName) => {
       const component = Icons[iconName as keyof typeof Icons]
       expect(typeof component).toBe("object")
-      expect(component.$$typeof).toBeDefined() // forwardRef components have $$typeof
+      expect(component.$$typeof).toBeDefined()
     })
   })
 
@@ -37,11 +38,11 @@ describe("Index File", () => {
 
 describe("Icon Base", () => {
   const dummyVariants: Map<IconVariant, ReactElement> = new Map([
-    ["light", React.createElement(React.Fragment, null, "light")],
-    ["regular", React.createElement(React.Fragment, null, "regular")],
-    ["filled", React.createElement(React.Fragment, null, "filled")],
-    ["duotone", React.createElement(React.Fragment, null, "duotone")],
-    ["duotone-line", React.createElement(React.Fragment, null, "duotone-line")],
+    ["light", <React.Fragment key={1}>light</React.Fragment>],
+    ["regular", <React.Fragment key={2}>regular</React.Fragment>],
+    ["filled", <React.Fragment key={3}>filled</React.Fragment>],
+    ["duotone", <React.Fragment key={4}>duotone</React.Fragment>],
+    ["duotone-line", <React.Fragment key={5}>duotone-line</React.Fragment>],
   ])
 
   it("renders without crashing", () => {
@@ -154,7 +155,6 @@ describe("Icon Components", () => {
         />
       )
       const icon = screen.getByTestId("custom-class-icon")
-
       expect(icon).toHaveClass("custom-icon-class")
     })
 
@@ -163,7 +163,6 @@ describe("Icon Components", () => {
       const customStyle = { color: "blue", fontSize: "2rem" }
       render(<AddressCard data-testid='styled-icon' style={customStyle} />)
       const icon = screen.getByTestId("styled-icon")
-
       expect(icon).toHaveStyle("color: rgb(0, 0, 255)")
       expect(icon).toHaveStyle("font-size: 2rem")
     })
@@ -172,7 +171,7 @@ describe("Icon Components", () => {
   describe("Event Handlers", () => {
     it("handles onClick events", async () => {
       const { AddressCard } = await import("../src/index")
-      const handleClick = jest.fn()
+      const handleClick = vi.fn()
       render(<AddressCard data-testid='clickable-icon' onClick={handleClick} />)
       const icon = screen.getByTestId("clickable-icon")
 
@@ -182,7 +181,7 @@ describe("Icon Components", () => {
 
     it("handles onMouseEnter events", async () => {
       const { AddressCard } = await import("../src/index")
-      const handleMouseEnter = jest.fn()
+      const handleMouseEnter = vi.fn()
       render(
         <AddressCard
           data-testid='hoverable-icon'
@@ -213,8 +212,6 @@ describe("Icon Components", () => {
       render(<AddressCard data-testid='ref-icon' ref={ref} />)
 
       expect(ref.current).toBeInstanceOf(SVGSVGElement)
-      // In JSDOM environment, SVG methods might not be fully implemented
-      // So we test that the ref points to the correct SVG element
       expect(ref.current?.tagName.toLowerCase()).toBe("svg")
       expect(ref.current?.namespaceURI).toBe("http://www.w3.org/2000/svg")
     })
@@ -224,13 +221,9 @@ describe("Icon Components", () => {
 
       const TestComponent = () => {
         const ref = React.useRef<SVGSVGElement>(null)
-
         React.useEffect(() => {
-          if (ref.current) {
-            ref.current.setAttribute("data-ref-test", "true")
-          }
+          if (ref.current) ref.current.setAttribute("data-ref-test", "true")
         }, [])
-
         return <AddressCard data-testid='use-ref-icon' ref={ref} />
       }
 
@@ -245,21 +238,19 @@ describe("Icon Components", () => {
 
       const callbackRef = (element: SVGSVGElement | null) => {
         refElement = element
-        if (element) {
-          element.setAttribute("data-callback-ref", "true")
-        }
+        if (element) element.setAttribute("data-callback-ref", "true")
       }
 
       render(<AddressCard data-testid='callback-ref-icon' ref={callbackRef} />)
-
       const icon = screen.getByTestId("callback-ref-icon")
+
       expect(refElement).toBe(icon)
       expect(icon).toHaveAttribute("data-callback-ref", "true")
     })
   })
 
   describe("Accessibility", () => {
-    it("supports aria-label for screen readers", async () => {
+    it("supports aria-label", async () => {
       const { AddressCard } = await import("../src/index")
       render(
         <AddressCard
@@ -268,23 +259,20 @@ describe("Icon Components", () => {
         />
       )
       const icon = screen.getByTestId("accessible-icon")
-
       expect(icon).toHaveAttribute("aria-label", "Address card icon")
     })
 
-    it("supports role attribute", async () => {
+    it("supports role", async () => {
       const { AddressCard } = await import("../src/index")
       render(<AddressCard data-testid='role-icon' role='img' />)
       const icon = screen.getByTestId("role-icon")
-
       expect(icon).toHaveAttribute("role", "img")
     })
 
-    it("can be made focusable with tabIndex", async () => {
+    it("can be focusable", async () => {
       const { AddressCard } = await import("../src/index")
       render(<AddressCard data-testid='focusable-icon' tabIndex={0} />)
       const icon = screen.getByTestId("focusable-icon")
-
       expect(icon).toHaveAttribute("tabindex", "0")
     })
   })
@@ -292,8 +280,7 @@ describe("Icon Components", () => {
 
 describe("TypeScript Types", () => {
   it("icon components accept SVGProps", () => {
-    // This test passes if TypeScript compilation succeeds
-    const props: SVGProps<SVGSVGElement> & { [key: string]: unknown } = {
+    const props: SVGProps<SVGSVGElement> & Record<string, unknown> = {
       width: 24,
       height: 24,
       fill: "currentColor",
@@ -301,72 +288,58 @@ describe("TypeScript Types", () => {
       "data-testid": "typescript-test",
       onClick: () => {},
     }
-
-    // Type checking - this should compile without errors
     const element = <AddressCard {...props} />
     expect(element).toBeDefined()
   })
 
   it("icon components work with React.ComponentProps", () => {
-    // Test using React.ComponentProps type
     const props: React.ComponentProps<typeof AddressCard> = {
       width: "100%",
       height: "auto",
       style: { color: "red" },
     }
-
     const element = <AddressCard {...props} />
     expect(element).toBeDefined()
   })
 
   describe("Ref Types", () => {
-    it("icon components accept ref with correct type", () => {
+    it("accepts ref with correct type", () => {
       const ref = React.createRef<SVGSVGElement>()
       const element = <AddressCard ref={ref} />
       expect(element).toBeDefined()
     })
 
-    it("icon components work with useRef", () => {
+    it("works with useRef", () => {
       const TestComponent = () => {
         const ref = React.useRef<SVGSVGElement>(null)
         return <AddressCard ref={ref} />
       }
-
       const element = <TestComponent />
       expect(element).toBeDefined()
     })
 
-    it("icon components work with callback refs", () => {
+    it("works with callback refs", () => {
       const callbackRef = (element: SVGSVGElement | null) => {
-        // This should compile without type errors
-        if (element) {
-          element.getBBox()
-        }
+        if (element) element.getBBox()
       }
-
       const element = <AddressCard ref={callbackRef} />
       expect(element).toBeDefined()
     })
 
     it("ref type is compatible with SVGSVGElement", () => {
-      // This test ensures the ref type is correctly inferred
       const ref = React.createRef<SVGSVGElement>()
       const element = <AddressCard ref={ref} />
-
-      // TypeScript should understand that ref.current is SVGSVGElement | null
       const current: SVGSVGElement | null = ref.current
       expect(typeof current).toBe("object")
       expect(element).toBeDefined()
     })
 
-    it("works with forwardRef pattern correctly", () => {
-      // Test that the component is properly typed as a forwardRef component
+    it("works with forwardRef pattern", () => {
       const WrappedComponent = React.forwardRef<
         SVGSVGElement,
         React.ComponentProps<typeof AddressCard>
       >((props, ref) => <AddressCard {...props} ref={ref} />)
-
-      WrappedComponent.displayName = "WrappedAddressCard"
+      WrappedComponent.displayName = "WrappedComponent"
 
       const ref = React.createRef<SVGSVGElement>()
       const element = <WrappedComponent ref={ref} width={32} />
