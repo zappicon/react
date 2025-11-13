@@ -11,7 +11,7 @@
 [![npm version](https://badge.fury.io/js/%40zappicon%2Freact.svg)](https://badge.fury.io/js/%40zappicon%2Freact)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://zappicon.com/license)
 
-[![Demo](https://zappicon.com/assets/zappicon-packages-react-cover.png)](https://zappicon.com/packages)
+[![Demo](https://zappicon.com/assets/frameworks/zappicon-packages-react-cover.png)](https://zappicon.com/packages)
 
 Zappicon is a Free & premium UI icon library, crafted with care for designers, developers, and creators.
 
@@ -22,7 +22,7 @@ Zappicon is a Free & premium UI icon library, crafted with care for designers, d
 
 >  **Pro Version**  with 23,000+ icons coming soon.
   
-[![Demo](https://zappicon.com/assets/zappicon-icons-packages.jpg)](https://zappicon.com)
+[![Demo](https://zappicon.com/assets/frameworks/zappicon-icons-packages.jpg)](https://zappicon.com)
 
 ## Features
 
