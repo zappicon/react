@@ -1,11 +1,3 @@
-<p align="center">
-  <picture>
-    <source width="460" media="(prefers-color-scheme: dark)" srcset="https://zappicon.com/assets/frameworks/zappicon-react-dark.svg">
-    <source width="460" media="(prefers-color-scheme: light)" srcset="https://zappicon.com/assets/frameworks/zappicon-react.svg">
-    <img width="460" alt="zappicon react plugin" src="https://zappicon.com/assets/frameworks/zappicon-react.svg">
-  </picture>
-</p>
-
 # Zappicon React
 
 [![npm version](https://badge.fury.io/js/%40zappicon%2Freact.svg)](https://badge.fury.io/js/%40zappicon%2Freact)
