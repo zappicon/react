@@ -11,14 +11,18 @@
 [![npm version](https://badge.fury.io/js/%40zappicon%2Freact.svg)](https://badge.fury.io/js/%40zappicon%2Freact)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://zappicon.com/license)
 
-[![Demo](https://zappicon.com/images/og-image-zappicon.jpg)](https://zappicon.com)
+[![Demo](https://zappicon.com/assets/zappicon-packages-react-cover.png)](https://zappicon.com/packages)
 
-Free & premium UI icons library, crafted to simplify workflows for designers, developers and creators.
+Zappicon is a Free & premium UI icon library, crafted with care for designers, developers, and creators.
 
 - 2,000+ Free icons (400+ Icons × 5 Styles).
 - 5 Styles Available (Light, Regular, Filled, Duotone, Duotone Line).
 - Unified keyline shapes on a 24×24 px grid.
 - Easy customization of colors, sizes, and styles.
+
+>  **Pro Version**  with 23,000+ icons coming soon.
+  
+[![Demo](https://zappicon.com/assets/zappicon-icons-packages.jpg)](https://zappicon.com)
 
 ## Features
 
