@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.2.1] - 2025-11-13
+
+### Changes
+
+build: migrate from Rollup to Vite and replace Jest with Vitest  - Removed Rollup configuration in favor of Vite for faster development and builds - Replaced Jest setup with Vitest for better integration with Vite and simpler config  
+
+
 ## [v1.2.0] - 2025-11-12
 
 ### Changes
