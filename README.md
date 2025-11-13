@@ -16,6 +16,7 @@ Zappicon is a Free & premium UI icon library, crafted with care for designers, d
   
 [![Demo](https://zappicon.com/assets/frameworks/zappicon-icons-packages.jpg)](https://zappicon.com)
 
+
 ## Features
 
 - Full TypeScript support with proper type definitions.
